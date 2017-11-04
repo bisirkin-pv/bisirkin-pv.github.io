@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Пример использования</title>
     <!-- Подключаем модуль -->
+    <link rel="stylesheet" href="css/main.css">
     <script src="colorCode.js"></script>
     <script>
         window.onload = function () {
@@ -36,7 +37,15 @@
     </style>
 </head>
 <body>
-    <div>
+   <header><span class="logo-name">bisirkin-pv.github.io</span></header>
+    <nav>
+        <ul>
+            <li><a href="https://bisirkin-pv.github.io/" class="active">Home</a></li>
+            <li><a href="https://bisirkin-pv.github.io/colorCode.html">colorCode</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div>
         <h1>Using code highlighting</h1>
         <h2>Update the illuminated unit from textarea</h2>
 <textarea name="text-input-sql" id="text_sql_input" cols="30" rows="10" data-colorCode="sql">select * from base.dbo.table where table.a = 10 and table.b='text' select </textarea>
@@ -47,5 +56,9 @@
         <div id="text_sql" data-colorCode="sql">select * from base.dbo.table where table.a = 10 and table.b='text'</div>
 
     </div>
+    </div>
+    <footer>
+        <a href="https://github.com/bisirkin-pv/">link on repsitory</a>
+    </footer>
 </body>
 </html>

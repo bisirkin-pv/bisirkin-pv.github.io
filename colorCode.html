@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пример использования</title>
+    <!-- Подключаем модуль -->
+    <script src="colorCode.js"></script>
+    <script>
+        window.onload = function () {
+            var colorCodeSql = ColorCode;
+            let h1Element = document.querySelector("h1");
+            h1Element.innerHTML = h1Element.innerHTML + " v" + colorCodeSql.getVersion() + "(" + colorCodeSql.getLastUpdateDate() + ")"
+            colorCodeSql.setUpperCase(false);
+            colorCodeSql.addSyntax('style/sql.json');
+            colorCodeSql.init("#text_sql", "#text_sql" ,false);
+            colorCodeSql.init("#text_sql_input", "#target" ,false);
+            colorCodeSql.addListener("#text_sql_input","#target");
+        }
+    </script>
+    <style>
+        body>div{
+            width: 800px;
+            margin: 0 auto;
+        }
+        h1,h2{
+            border-bottom: solid 1px #ccc;
+        }
+        textarea{
+            width: 100%;
+        }
+        .colorCode{
+            font-family: monospace;
+            border: solid 1px rgb(169, 169, 169);
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Using code highlighting</h1>
+        <h2>Update the illuminated unit from textarea</h2>
+<textarea name="text-input-sql" id="text_sql_input" cols="30" rows="10" data-colorCode="sql">select * from base.dbo.table where table.a = 10 and table.b='text' select </textarea>
+        
+        <pre id="target"></pre>
+
+        <h2>Change the backlight within the specified block div</h2>
+        <div id="text_sql" data-colorCode="sql">select * from base.dbo.table where table.a = 10 and table.b='text'</div>
+
+    </div>
+</body>
+</html>

@@ -1,8 +1,8 @@
 ;(function (){    
     "use strict";
     
-    let version = '0.0.5'
-        ,lastUpdateDate = '21.08.2017';         
+    let version = '0.0.6'
+        ,lastUpdateDate = '05.11.2017';         
     var isDebug = true                          //Flag debug mode
         ,syntax = {}                            //Stores downloaded syntaxes
         ,htmldata = 'data-colorCode'            //Attribute to find the syntax for highlighting
@@ -170,9 +170,9 @@
 
     /* 
         Object: _CodeBlock, creates a text block with text and highlighting
-        in: txt - текст для поиска и замены        
-        in: syntax - синтаксис текста
-        return: txt - итоговый текст обернутый
+        in: txt - text to search and replace        
+        in: syntax - text syntax
+        return: txt - final text
     */
     function _CodeBlock(txt, syntax){
         if(typeof syntax != "object") {return "";}

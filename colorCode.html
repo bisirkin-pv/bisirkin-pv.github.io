@@ -16,6 +16,12 @@
             colorCodeSql.init("#text_sql", "#text_sql" ,false);
             colorCodeSql.init("#text_sql_input", "#target" ,false);
             colorCodeSql.addListener("#text_sql_input","#target");
+            
+            let checkbox = document.querySelector("#uppercase_word");
+            let action = "change";
+                checkbox.addEventListener(action, function(obj){
+                    colorCodeSql.setUpperCase(obj.target.checked);
+                }, true);
         }
     </script>
     <style>
@@ -23,7 +29,7 @@
             border-bottom: solid 1px #ccc;
         }
         textarea{
-            width: 100%;
+            width: 99%;
         }
         .colorCode{
             font-family: monospace;
@@ -33,7 +39,7 @@
     </style>
 </head>
 <body>
-   <header><span class="logo-name">bisirkin-pv.github.io</span></header>
+   <header><p class="logo-name">bisirkin-pv.github.io</p></header>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -41,9 +47,11 @@
         </ul>
     </nav>
     <div class="container">
-        <div>
         <h1>Using code highlighting</h1>
         <h2>Update the illuminated unit from textarea</h2>
+        <label for="uppercase_word">
+            <input type="checkbox" name="uppercase_word" id="uppercase_word">Keyword in uppercase
+        </label>
 <textarea name="text-input-sql" id="text_sql_input" cols="30" rows="10" data-colorCode="sql">select * from base.dbo.table where table.a = 10 and table.b='text' select </textarea>
         
         <pre id="target"></pre>
@@ -51,7 +59,6 @@
         <h2>Change the backlight within the specified block div</h2>
         <div id="text_sql" data-colorCode="sql">select * from base.dbo.table where table.a = 10 and table.b='text'</div>
 
-    </div>
     </div>
     <footer>
         <a href="https://github.com/bisirkin-pv/">link on repsitory</a>

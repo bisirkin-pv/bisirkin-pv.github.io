@@ -191,7 +191,7 @@
             
             var pretxt = "";
             if (isUpperCase) {                       
-                txt = txt.replace(regexp,'<span class='+syntax.name + '-'+syntax.codeBase[i].color.substring(1)+'>'+tag.toUpperCase()+'</span>');
+                txt = txt.replace(regexp,'<span class='+syntax.name + '-'+syntax.codeBase[i].color.substring(1)+'>'+syntax.codeBase[i].tag.toUpperCase()+'</span>');
             }else{
                 txt = txt.replace(regexp,'<span class='+syntax.name + '-'+syntax.codeBase[i].color.substring(1)+'>$1</span>');               
             }

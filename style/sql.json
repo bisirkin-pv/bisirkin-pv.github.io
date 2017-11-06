@@ -398,6 +398,24 @@
                     "name":"WAITFOR"
                 }
             ]
+        },{            
+            "color": "#dd0000",
+            "bold":0,
+            "type":"str",
+            "tag":[                
+                {
+                    "name":"'"
+                }
+            ]
+        },{            
+            "color": "#777",
+            "bold":0,
+            "type":"str",
+            "tag":[                
+                {
+                    "name":"\""                
+                }
+            ]
         }
     ]
 }

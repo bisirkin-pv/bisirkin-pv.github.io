@@ -1,8 +1,8 @@
 ;(function (){    
     "use strict";
     
-    let version = '0.0.6'
-        ,lastUpdateDate = '05.11.2017';         
+    let version = '0.0.7'
+        ,lastUpdateDate = '06.11.2017';         
     var isDebug = true                          //Flag debug mode
         ,syntax = {}                            //Stores downloaded syntaxes
         ,htmldata = 'data-colorCode'            //Attribute to find the syntax for highlighting
@@ -179,27 +179,81 @@
         txt = _clearHtml(txt);
         for(var i = 0; i < syntax.codeBase.length; i++){            
             let tag = "";            
-            if(syntax.codeBase[i].type=="word"){
-                tag = "\\b(" + syntax.codeBase[i].tag + ")\\b";
-            }else {
-                if(syntax.codeBase[i].type=="regexp"){
+            switch(syntax.codeBase[i].type) {
+                case "word":
+                    tag = "\\b(" + syntax.codeBase[i].tag + ")\\b";
+                    break;
+                case "regexp":
                     tag = syntax.codeBase[i].tag;
+                    break;
+                case "str":
+                    let className = syntax.name + '-'+syntax.codeBase[i].color.substring(1);
+                    txt = _StrColor(txt, syntax.codeBase[i].tag, className);
+                    break;
+            }
+            if(tag!=""){
+                let regexp = new RegExp(tag, "gim");
+
+                var pretxt = "";
+                if (isUpperCase) {                       
+                    txt = txt.replace(regexp,'<span class='+syntax.name + '-'+syntax.codeBase[i].color.substring(1)+'>'+syntax.codeBase[i].tag.toUpperCase()+'</span>');
+                }else{
+                    txt = txt.replace(regexp,'<span class='+syntax.name + '-'+syntax.codeBase[i].color.substring(1)+'>$1</span>');               
                 }
             }
-            if(tag==""){return "";}
-            let regexp = new RegExp(tag, "gim");
-            
-            var pretxt = "";
-            if (isUpperCase) {                       
-                txt = txt.replace(regexp,'<span class='+syntax.name + '-'+syntax.codeBase[i].color.substring(1)+'>'+syntax.codeBase[i].tag.toUpperCase()+'</span>');
-            }else{
-                txt = txt.replace(regexp,'<span class='+syntax.name + '-'+syntax.codeBase[i].color.substring(1)+'>$1</span>');               
-            }
         }
-        
         return txt;
     }
-        
+    /* 
+        Object: _CodeBlock, text highlighting according to the rules of the "str" type
+        in: txt - text to search and replace        
+        in: tag - character for search
+        in: className - name class css
+        return: txt - final text
+    */    
+    function _StrColor(txt, tag, className){
+        let text = "";
+        let regexp = new RegExp(tag, "gim");
+        let match = regexp.exec(txt);
+        let posStart = 0
+            ,posEnd = 0
+            ,i = 0;
+        while(match!=null){
+            if(i==0){
+                posStart = regexp.lastIndex;
+                text += txt.substring(posEnd,posStart-1);
+                i += 1;
+            }else{
+                posEnd = regexp.lastIndex;
+                let str = txt.substring(posStart,posEnd);
+                if(str!=""){
+                    let clrStr = _ClearStyle(str);
+                    text += '<span class=' + className + '>' + tag + clrStr + '</span>';
+                }else{
+                    text += tag;
+                }
+                i = 0;
+            }
+            match = regexp.exec(txt);
+        }
+        if(txt.length!=posEnd){
+            text += txt.substring(posEnd);
+        }
+        if(text==""){
+            text = txt;
+        }
+        return text;
+    }
+    /* 
+        Object: _CodeBlock, replace all automatic create styles on html code
+        in: txt - text to search and replace
+        return: txt - clear text
+    */
+    function _ClearStyle(txt){
+        let re = /<[\w\d =-]*>|<\/span>/;
+        let regexp = new RegExp(re, "gim");
+        return txt.replace(regexp,'');
+    }
     /* 
         Object: ColorCode, replace all <,> on html code
         in: input string
@@ -209,8 +263,7 @@
         txt = txt.replace(new RegExp('<','g'),'&#8249;');
         txt = txt.replace(new RegExp('>','g'),'&#8250;');
         return txt;
-    }
-        
+    }  
     /*
         Object: ColorCode, searches all items for pages and adds them backlight
         In: String selectorSource - css selector to element with text

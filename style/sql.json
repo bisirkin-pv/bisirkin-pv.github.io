@@ -355,6 +355,16 @@
                     "name":"PROC"
                 },{
                     "name":"UPDATE"
+                },{
+                    "name":"INTEGER"
+                },{
+                    "name":"INT"
+                },{
+                    "name":"VARCHAR"
+                },{
+                    "name":"CHAR"
+                },{
+                    "name":"DECIMAL"
                 }
             ]
         },{            
@@ -414,6 +424,15 @@
             "tag":[                
                 {
                     "name":"\""                
+                }
+            ]
+        },{            
+            "color": "#009933",
+            "bold":0,
+            "type":"regexp",
+            "tag":[                
+                {
+                    "name":"--(.*)$"
                 }
             ]
         }

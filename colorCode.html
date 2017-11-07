@@ -52,7 +52,16 @@
         <label for="uppercase_word">
             <input type="checkbox" name="uppercase_word" id="uppercase_word">Keyword in uppercase
         </label>
-<textarea name="text-input-sql" id="text_sql_input" cols="30" rows="10" data-colorCode="sql">select * from base.dbo.table where table.a = 10 and table.b='text' select </textarea>
+<textarea name="text-input-sql" id="text_sql_input" cols="30" rows="10" data-colorCode="sql">create table dbo.tTable(
+  poleInt int
+ ,poleChar varchar(10)
+  constraint pkTable unique (poleInt)
+);
+
+select * from base.dbo.tTable t 
+where t.poleInt = 10 
+  and poleChar = 'text' --select
+;</textarea>
         
         <pre id="target"></pre>
 

@@ -1,8 +1,8 @@
 ;(function (){    
     "use strict";
     
-    let version = '0.0.7'
-        ,lastUpdateDate = '06.11.2017';         
+    let version = '0.0.8'
+        ,lastUpdateDate = '07.11.2017';         
     var isDebug = true                          //Flag debug mode
         ,syntax = {}                            //Stores downloaded syntaxes
         ,htmldata = 'data-colorCode'            //Attribute to find the syntax for highlighting
@@ -178,22 +178,23 @@
         if(typeof syntax != "object") {return "";}
         txt = _clearHtml(txt);
         for(var i = 0; i < syntax.codeBase.length; i++){            
-            let tag = "";            
+            let tag = "";
+            let className = syntax.name + '-'+syntax.codeBase[i].color.substring(1);
             switch(syntax.codeBase[i].type) {
                 case "word":
                     tag = "\\b(" + syntax.codeBase[i].tag + ")\\b";
                     break;
                 case "regexp":
-                    tag = syntax.codeBase[i].tag;
+                    txt = _RegExpColor(txt, syntax.codeBase[i].tag, className);
                     break;
                 case "str":
-                    let className = syntax.name + '-'+syntax.codeBase[i].color.substring(1);
                     txt = _StrColor(txt, syntax.codeBase[i].tag, className);
                     break;
             }
             if(tag!=""){
+                
                 let regexp = new RegExp(tag, "gim");
-
+                
                 var pretxt = "";
                 if (isUpperCase) {                       
                     txt = txt.replace(regexp,'<span class='+syntax.name + '-'+syntax.codeBase[i].color.substring(1)+'>'+syntax.codeBase[i].tag.toUpperCase()+'</span>');
@@ -243,6 +244,39 @@
             text = txt;
         }
         return text;
+    }
+    /* 
+        Object: _CodeBlock, text highlighting according to the rules of the "regexp" type
+        in: txt - text to search and replace        
+        in: tag - character for search
+        in: className - name class css
+        return: txt - final text
+    */
+    function _RegExpColor(txt, tag, className){
+        let text = "";
+        let regexp = new RegExp(tag, "gim");
+        let match = regexp.exec(txt);
+        let posStart = 0
+            ,posEnd = 0;
+            
+        while(match!=null){
+            posStart = match.index;
+            text += txt.substring(posEnd,posStart);
+            posEnd = posStart + match[0].length;
+            
+            let str = txt.substring(posStart,posEnd);
+            if(str!=""){
+                let clrStr = _ClearStyle(str);
+                text += '<span class=' + className + '>' + clrStr + '</span>';
+            }else{
+                text += tag;
+            }   
+            match = regexp.exec(txt);
+        }
+        if(txt.length!=posEnd){
+            text += txt.substring(posEnd);
+        }
+        return text=="" ? txt : text;
     }
     /* 
         Object: _CodeBlock, replace all automatic create styles on html code

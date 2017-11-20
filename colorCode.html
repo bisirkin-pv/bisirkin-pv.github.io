@@ -5,9 +5,13 @@
     <title>Пример использования</title>
     <!-- Подключаем модуль -->
     <link rel="stylesheet" href="css/main.css">
-    <script src="colorCode.js"></script>
+    <script src="js/colorCode.js"></script>
+    <script src="js/menuBuilder.js"></script>
     <script>
         window.onload = function () {
+            var menuBuilder = MenuBuilder;
+            menuBuilder.create("../menu.json","#navigation");
+            
             var colorCodeSql = ColorCode;
             let h1Element = document.querySelector("h1");
             h1Element.innerHTML = h1Element.innerHTML + " v" + colorCodeSql.getVersion() + "(" + colorCodeSql.getLastUpdateDate() + ")"
@@ -39,13 +43,12 @@
     </style>
 </head>
 <body>
-   <header><p class="logo-name">bisirkin-pv.github.io</p></header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/colorCode.html"  class="active">colorCode</a></li>
-        </ul>
-    </nav>
+   <header><p class="logo-name"></p>
+        <nav id="navigation"></nav>
+    </header>
+    <div id="leftBlock">
+       
+    </div>
     <div class="container">
         <h1>Using code highlighting</h1>
         <h2>Update the illuminated unit from textarea</h2>

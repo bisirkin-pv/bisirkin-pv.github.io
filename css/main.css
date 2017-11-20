@@ -16,22 +16,15 @@ a{
     color: #405d27;
     border-bottom: 1px solid #405d27;
 }
-nav{
+#leftBlock{
     grid-row: 2 / 3;
     border-right: 1px solid ;
-}
-.active{
-    color: #c4b7a6;
-    border-bottom: 1px solid #c4b7a6; 
-}
-nav ul{
-    list-style: none;
 }
 header,footer{
     background-color: #3e4444;
     color: #82b74b;
     grid-column: 1 / 3;
-    padding: 10px;
+    /*padding: 10px;*/
 }
 header{
     font-size: 24px;
@@ -50,17 +43,55 @@ footer a{
 .logo-name{
     margin: 0;
     padding: 0;
-    float: right;
+    position: absolute;
+    left: 50px;
+    top: -15px;
+    background-image: url("../img/business-card.png");
+    background-size: contain;
+    background-color: #ccc;
+    height: 85px;
+    width: 85px;
+    border-radius: 50%;
+    
 }
-header p.logo-name{
-    border-bottom: 1px solid #82b74b;
-    border-left: 1px solid #82b74b;
+/*
+    nemuBuilder style
+*/
+ul.nemuBuilder{
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
-header p.logo-name::first-letter{
-    text-transform: uppercase;
-    background-color: #82b74b;
-    border-bottom: 1px solid #82b74b;
-    color: #3e4444;
-    padding: 0 2px 0 1px;
-    margin: 0 2px 0 0;
+ul.nemuBuilder li{
+    display: inline-block;
 }
+/*
+    unique style for menu
+*/
+ul.nemuBuilder{
+    line-height: 60px;
+    margin-left: 20%;
+    font-size: 0.85em;
+}
+ul.nemuBuilder li{
+    padding: 0 15px;
+    border-right: 1px solid #405d27;
+}
+ul.nemuBuilder li:nth-child(2n){
+
+}
+ul.nemuBuilder li:last-child{
+    border-right: none;
+}
+ul.nemuBuilder li a{
+    border-bottom: none;
+    color: #82b74b;
+}
+ul.nemuBuilder li a:hover{
+    border-bottom: 1px solid #405d27;
+}
+ul.nemuBuilder li a.active{
+    color: #c4b7a6;
+    border-bottom: 1px solid #c4b7a6; 
+}
+

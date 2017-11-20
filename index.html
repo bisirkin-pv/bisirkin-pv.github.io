@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <title>bisirkin-pv</title>
     <link rel="stylesheet" href="css/main.css">
+    <script src="js/menuBuilder.js"></script>
+    <script>
+        window.onload = function () {
+            var menuBuilder = MenuBuilder;
+            menuBuilder.create("../menu.json","#navigation");
+        }
+    </script>
 </head>
 <body>
-    <header><p class="logo-name">bisirkin-pv.github.io</p></header>
-    <nav>
-        <ul>
-            <li><a href="/" class="active">Home</a></li>
-            <li><a href="/colorCode.html">colorCode</a></li>
-        </ul>
-    </nav>
+    <header><p class="logo-name"></p>
+        <nav id="navigation"></nav>
+    </header>
+    <div id="leftBlock">
+       
+    </div>
     <div class="container">
         <h1>Hello!</h1>
         <p>This page include exemple my project.</p>

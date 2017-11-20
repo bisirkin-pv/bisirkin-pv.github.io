@@ -1,0 +1,11 @@
+{
+    "menu":[
+        {
+            "name":"Home",
+            "url":"/"
+        },{
+            "name":"Color Code",
+            "url":"/colorCode.html"
+        }
+    ]
+}

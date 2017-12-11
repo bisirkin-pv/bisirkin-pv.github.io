@@ -6,6 +6,9 @@
         },{
             "name":"Color Code",
             "url":"/colorCode.html"
+        },{
+            "name":"Check Fullness Table",
+            "url":"/CheckFullnessTable.html"
         }
     ]
 }

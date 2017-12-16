@@ -4,14 +4,45 @@
     <meta charset="UTF-8">
     <title>Checking the fullness of objects</title>
     <script src="js/menuBuilder.js"></script>    
-    <link rel="stylesheet" href="css/verifyObj.css">
+    <script src="js/workerGitHub.js"></script>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/verifyObj.css">
     <script>
         window.onload = function () {
             var menuBuilder = MenuBuilder;
             menuBuilder.create("../menu.json","#navigation");
+            
+            var workerGit = WorkerGitHub;
+            let listRepoHTML = workerGit.getHTMLListRepositories(workerGit.getUserRepositories('bisirkin-pv'));
+            document.querySelector('#leftBlock').innerHTML = listRepoHTML;
+            
+            function ShowHideBlock(isHide,cls){
+                var ulBlock = document.querySelector(".container ul");
+                var liBlock = ulBlock.getElementsByTagName("li");
+                for (var i = 0; i < liBlock.length; i++) {
+                    if(!liBlock[i].className.includes(cls)){
+                        console.log(liBlock[i]);
+                        if(!!isHide){
+                            liBlock[i].className = "hide";
+                        }else{
+                            liBlock[i].className = "";
+                        }
+                    }
+                }    
+            }
+            
+            let checkbox = document.querySelector("#filter");
+            let action = "change";
+                checkbox.addEventListener(action, function(obj){
+                    ShowHideBlock(obj.target.checked,'verify-error');
+                }, true);            
         }
     </script>
+    <style>
+        .container ul li.hide{
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <body>
@@ -23,7 +54,14 @@
     </div>
     <div class="container">
         <h1>Проверка наполнености источников</h1><br/>
-        <div class="verify-info-result">Всего объектов проверено 11 из них с предупреждениями <strong>0</strong></div><ul><li class="verify-error">
+        <div class="verify-info-result">Всего объектов проверено 11 из них с предупреждениями <strong>1</strong></div>
+        <div>
+            <label for="filter">
+                <input type="checkbox" name="filter" id="filter">Показывать только ошибки
+            </label>
+        </div>
+        <ul>
+        <li class="verify-error">
         <div class="verify-table-block">Объект: pubs.dbo.authors</div>
         <table class="verify-table" id="verify_table_0">
             <tbody><tr>

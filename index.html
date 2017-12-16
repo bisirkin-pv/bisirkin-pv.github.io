@@ -5,10 +5,15 @@
     <title>bisirkin-pv</title>
     <link rel="stylesheet" href="css/main.css">
     <script src="js/menuBuilder.js"></script>
+    <script src="js/workerGitHub.js"></script>
     <script>
         window.onload = function () {
             var menuBuilder = MenuBuilder;
             menuBuilder.create("../menu.json","#navigation");
+            
+            var workerGit = WorkerGitHub;
+            let listRepoHTML = workerGit.getHTMLListRepositories(workerGit.getUserRepositories('bisirkin-pv'));
+            document.querySelector('#leftBlock').innerHTML = listRepoHTML;
         }
     </script>
 </head>

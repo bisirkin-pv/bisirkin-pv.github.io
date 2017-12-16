@@ -3,7 +3,7 @@
     
     let version = '0.0.1'
         ,lastUpdateDate = '20.11.2017';         
-    var isDebug = true                          //Flag debug mode
+    var isDebug = false                          //Flag debug mode
     ;
         
     /*  

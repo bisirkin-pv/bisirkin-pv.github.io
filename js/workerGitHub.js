@@ -3,7 +3,7 @@
     
     let version = '0.0.1'
         ,lastUpdateDate = '16.12.2017';         
-    var isDebug = true                          //Flag debug mode
+    var isDebug = false                          //Flag debug mode
     ;
     let gitApi = {
         userRepositories : 'https://api.github.com/users/{username}/repos'

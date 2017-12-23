@@ -9,6 +9,9 @@
         },{
             "name":"Check Fullness Table",
             "url":"/CheckFullnessTable.html"
+        },{
+            "name":"Digital keyboard",
+            "url":"/keyboard.html"
         }
     ]
 }

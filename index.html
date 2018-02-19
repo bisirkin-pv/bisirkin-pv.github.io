@@ -14,12 +14,33 @@
             var workerGit = WorkerGitHub;
             let listRepoHTML = workerGit.getHTMLListRepositories(workerGit.getUserRepositories('bisirkin-pv'));
             document.querySelector('#leftBlock').innerHTML = listRepoHTML;
-        }
+            
+            document.querySelector('#close').addEventListener("click", function(event){
+                document.querySelector('body').className = "grid-close";
+                let sections = document.querySelectorAll('section');
+                [].forEach.call(sections, function(section) {
+                  section.className = "element-hide";
+                });
+                document.querySelector('.logo-name').className += " logo-center";
+            },true)
+        
+        document.querySelector('#js-logo').addEventListener("click", function(event){
+                document.querySelector('body').className = "grid-default";
+                let sections = document.querySelectorAll('section');
+                [].forEach.call(sections, function(section) {
+                  section.className = "element-show"
+                });
+                document.querySelector('.logo-name').className = "logo-name";
+            },true)
+        };
     </script>
 </head>
-<body>
-    <header><p class="logo-name"></p>
-        <nav id="navigation"></nav>
+<body class="grid-close">
+    <header>
+        <p class="logo-name logo-center" id="js-logo"></p>
+        <section>
+            <nav id="navigation"></nav>
+        </section>
     </header>
     <div id="leftBlock">
        
@@ -27,9 +48,12 @@
     <div class="container">
         <h1>Hello!</h1>
         <p>This page include example my project.</p>
+        <button id="close">Close</button>
     </div>
     <footer>
-        <a href="https://github.com/bisirkin-pv/">link on repsitory</a>
+        <section>
+            <a href="https://github.com/bisirkin-pv/">link on repsitory</a>
+        </section>
     </footer>
 </body>
 </html>

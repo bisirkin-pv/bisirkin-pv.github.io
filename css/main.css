@@ -7,9 +7,29 @@ html, body {
 }
 body {
     display: grid;
-    grid-template-rows: 60px auto 80px;
     grid-template-columns: minmax(200px, 3fr) 12fr;
     background-color: #e6e2d3;
+    -webkit-transition: all 3s;
+    transition: all 3s;
+    grid-template-rows: 60px auto 80px;
+}
+.grid-default{
+    grid-template-rows: 60px auto 80px;
+}
+.grid-close{
+    grid-template-rows: 50% 0px 50%;
+}
+section{
+    -webkit-transition: opacity 0.3s, visibility 0s linear 0.3s;
+    transition: opacity 0.3s, visibility 0s linear 0.3s;
+    opacity: 0;
+}
+.element-show{
+    opacity: 1;
+}
+.element-hide{
+    opacity: 0;
+    transition-delay: 0s;
 }
 a{
     text-decoration: none;
@@ -34,7 +54,7 @@ footer{
     line-height: 60px;
     grid-row-start: 3;
     grid-row-end: 4;
-    
+    color: azure;
 }
 footer a{
     color: #82b74b;
@@ -49,13 +69,27 @@ footer a{
     position: absolute;
     left: 50px;
     top: -15px;
-    background-image: url("../img/business-card.png");
+    background-image: url("../img/Places-user-identity-icon.png");
     background-size: contain;
     background-color: #ccc;
     height: 85px;
     width: 85px;
     border-radius: 50%;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
     
+}
+.logo-name.logo-center{
+    height: 160px;
+    width: 160px;
+    left:calc(50% - 80px);
+    top:calc(50% - 80px);
+    background-image: url("../img/Places-user-identity-icon.png");
+    z-index: 1000;
+    box-sizing: border-box;
+}
+.logo-name.logo-center:hover{
+    cursor: pointer;
 }
 /*
     nemuBuilder style
@@ -96,5 +130,9 @@ ul.nemuBuilder li a:hover{
 ul.nemuBuilder li a.active{
     color: #c4b7a6;
     border-bottom: 1px solid #c4b7a6; 
+}
+/* left menu */
+.workerGitHub-list-repo li{
+    padding: 2px 0;
 }
 

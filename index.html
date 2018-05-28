@@ -15,43 +15,25 @@
             let listRepoHTML = workerGit.getHTMLListRepositories(workerGit.getUserRepositories('bisirkin-pv'));
             document.querySelector('#leftBlock').innerHTML = listRepoHTML;
             
-            document.querySelector('#close').addEventListener("click", function(event){
-                document.querySelector('body').className = "grid-close";
-                let sections = document.querySelectorAll('section');
-                [].forEach.call(sections, function(section) {
-                  section.className = "element-hide";
-                });
-                document.querySelector('.logo-name').className += " logo-center";
-            },true)
-        
-        document.querySelector('#js-logo').addEventListener("click", function(event){
-                document.querySelector('body').className = "grid-default";
-                let sections = document.querySelectorAll('section');
-                [].forEach.call(sections, function(section) {
-                  section.className = "element-show"
-                });
-                document.querySelector('.logo-name').className = "logo-name";
-            },true)
         };
     </script>
 </head>
-<body class="grid-close">
+<body class="grid-default">
     <header>
-        <p class="logo-name logo-center" id="js-logo"></p>
-        <section>
+        <p class="logo-name" id="js-logo"></p>
+        <section class="element-show">
             <nav id="navigation"></nav>
         </section>
     </header>
     <div id="leftBlock">
-       
+        
     </div>
     <div class="container">
         <h1>Hello!</h1>
         <p>This page include example my project.</p>
-        <button id="close">Close</button>
     </div>
     <footer>
-        <section>
+        <section class="element-show">
             <a href="https://github.com/bisirkin-pv/">link on repsitory</a>
         </section>
     </footer>

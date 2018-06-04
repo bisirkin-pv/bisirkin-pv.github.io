@@ -5,18 +5,18 @@
     <title>Пример использования</title>
     <!-- Подключаем модуль -->
     <link rel="stylesheet" href="css/main.css">
-    <script src="http://91.240.85.203:8088/cdn/olorCode.js"></script>
-    <script src="http://91.240.85.203:8088/cdn/menuBuilder.js"></script>
-    <script src="http://91.240.85.203:8088/cdn/workerGitHub.js"></script>
+    <script src="https://prog-tools.ru:8088/cdn/olorCode.js"></script>
+    <script src="https://prog-tools.ru:8088/cdn/menuBuilder.js"></script>
+    <script src="https://prog-tools.ru:8088/cdn/workerGitHub.js"></script>
     <script>
         window.onload = function () {
             var menuBuilder = MenuBuilder;
             menuBuilder.create("../menu.json","#navigation");
-            
+
             var workerGit = WorkerGitHub;
             let listRepoHTML = workerGit.getHTMLListRepositories(workerGit.getUserRepositories('bisirkin-pv'));
             document.querySelector('#leftBlock').innerHTML = listRepoHTML;
-            
+
             var colorCodeSql = ColorCode;
             let h1Element = document.querySelector("h1");
             h1Element.innerHTML = h1Element.innerHTML + " v" + colorCodeSql.getVersion() + "(" + colorCodeSql.getLastUpdateDate() + ")"
@@ -25,7 +25,7 @@
             colorCodeSql.init("#text_sql", "#text_sql" ,false);
             colorCodeSql.init("#text_sql_input", "#target" ,false);
             colorCodeSql.addListener("#text_sql_input","#target");
-            
+
             let checkbox = document.querySelector("#uppercase_word");
             let action = "change";
                 checkbox.addEventListener(action, function(obj){
@@ -52,7 +52,7 @@
         <nav id="navigation"></nav>
     </header>
     <div id="leftBlock">
-       
+
     </div>
     <div class="container">
         <h1>Using code highlighting</h1>
@@ -66,11 +66,11 @@
   constraint pkTable unique (poleInt)
 );
 
-select * from base.dbo.tTable t 
-where t.poleInt = 10 
+select * from base.dbo.tTable t
+where t.poleInt = 10
   and poleChar = 'text' --select
 ;</textarea>
-        
+
         <pre id="target"></pre>
 
         <h2>Change the backlight within the specified block div</h2>

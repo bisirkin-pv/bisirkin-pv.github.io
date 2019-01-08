@@ -7,6 +7,9 @@
             "name":"Color Code",
             "url":"/colorCode.html"
         },{
+            "name":"AsciiDoctor",
+            "url":"/asciidoctor.html"
+        },{
             "name":"Check Fullness Table",
             "url":"/CheckFullnessTable.html"
         },{

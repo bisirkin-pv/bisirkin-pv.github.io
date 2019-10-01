@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fifteen game</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/menuBuilder.js"></script>
+    <link rel="stylesheet" href="/css/game.css">
+    <script src="/js/game.js"></script>
+    <script src="js/workerGitHub.js"></script>
+    <script>
+    window.onload = function () {
+        var menuBuilder = MenuBuilder;
+        menuBuilder.create("../menu.json","#navigation");
+        
+        var workerGit = WorkerGitHub;
+        let listRepoHTML = workerGit.getHTMLListRepositories(workerGit.getUserRepositories('bisirkin-pv'));
+        document.querySelector('#leftBlock').innerHTML = listRepoHTML;
+        
+        var fifteenGame = FifteenGame;
+        console.log(fifteenGame.getVersion())
+        var tbl = document.getElementById('table_game')
+        var start_button = document.querySelector('#result_block button')
+        var cnt = document.getElementById('count_block')
+        var msg = document.getElementById('message_block')
+        fifteenGame.init(tbl, start_button, cnt, msg)
+    }
+    </script>
+</head>
+<body>
+   <body class="grid-default">
+    <header>
+        <p class="logo-name" id="js-logo"></p>
+        <section class="element-show">
+            <nav id="navigation"></nav>
+        </section>
+    </header>
+    <div id="leftBlock">
+
+    </div>
+    <div class="container">
+        <h1>Fifteen game!</h1>
+        <table id="table_game">
+            
+        </table>
+        <div id="result_block">
+            <div id="count_block">Count move: 0</div>
+            <button class="btn">START</button>
+            <div id="message_block"></div>
+        </div>
+    </div>
+    <footer>
+        <section class="element-show">
+            <a href="https://github.com/bisirkin-pv/">link on repsitory</a>
+        </section>
+    </footer>
+</body>
+</body>
+</html>

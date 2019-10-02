@@ -1,8 +1,8 @@
 (function (){    
     'use strict'
     
-    let version = '1.0.1'
-        ,lastUpdateDate = '01.10.2019'
+    let version = '1.0.2'
+        ,lastUpdateDate = '02.10.2019'
     
     var state = []
         ,table = undefined
@@ -66,12 +66,12 @@
             var tr = document.createElement('tr')
             for(let cell = 1; cell < 5; cell++){
                 var td = document.createElement('td')
-                td.innerHTML = state[i]
                 td.dataset.number = i
                 if(state[i] === 0){
                     td.classList = 'zero_block'
                 }else{
                     td.classList = ''
+                    td.innerHTML = state[i]
                 }
                 tr.appendChild(td)
                 i++
@@ -138,7 +138,7 @@
                 if(_check_move(current_id, active_id)){
                     active_elem.classList.add('zero_block')
                     elem.innerHTML = active_elem.innerHTML
-                    active_elem.innerHTML = 0
+                    active_elem.innerHTML = ''
                     elem.classList.remove('zero_block')
                     state[current_id] = state[active_id]
                     state[active_id] = 0

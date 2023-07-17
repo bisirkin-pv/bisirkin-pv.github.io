@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Checklist Viewer</title>
+    <!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  font-size: var(16px);
+}
+
+body {
+  background-color: #fcd7c1;
+}
+
+.container {
+  margin: 0 auto;
+  width: 50%;
+}
+  h1{
+    padding: 24px;
+}
+textarea{
+    height: 128px;
+    width: 100%;
+}
+button {
+    background-color: #36404a; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bisirkin-pv/checklist-viewer/checklistViewer.css" type="text/css">  
+</head>
+<body>
+    <div class="container" id="container">
+        <div>
+            <h1>Checklist viewer</h1>
+            <div>
+                <label for="input_json">Input checklist JSON</label>
+                <textarea name="input_json">
+                    {
+                        "title": "Housework",
+                        "items": [
+                            {
+                                "text": "Car",
+                                "isComplete": false,
+                                "items": [
+                                    {
+                                        "text": "To wash a car",
+                                        "isComplete": false,
+                                        "items": [],
+                                        "blocks": [
+                                            "Don't forget to close the windows"
+                                        ]
+                                    },
+                                    {
+                                        "text": "Check tire pressure",
+                                        "isComplete": false,
+                                        "items": [],
+                                        "blocks": []
+                                    }
+                                ],
+                                "blocks": []
+                            },
+                            {
+                                "text": "Cleaning",
+                                "isComplete": false,
+                                "items": [
+                                    {
+                                        "text": "Clean up the rooms",
+                                        "isComplete": false,
+                                        "items": [],
+                                        "blocks": [
+                                            "Decide what to do with old children's toys"
+                                        ]
+                                    }
+                                ],
+                                "blocks": []
+                            }
+                        ],
+                        "blocks": []
+                    }
+                </textarea>
+                <button id="loadJsonBtn">Load</button>
+            </div>
+        </div>
+        <div id="content_json"></div>
+    </div>
+</body>
+<script type="module">
+    import {ChecklistBuilder} from "https://cdn.jsdelivr.net/gh/bisirkin-pv/checklist-viewer/checklistViewer.js";
+    function loadJsonChecklist(){
+        const input = document.querySelector('textarea[name="input_json"]')
+        let json = {}
+        try{
+            json = JSON.parse(input.value)
+        }catch{
+            alert('Error parse json')
+        }
+        const checklistBuilder = new ChecklistBuilder('content_json')
+        checklistBuilder.build(json)
+        checklistBuilder.initListener()
+    }
+
+    document.querySelector('#loadJsonBtn').addEventListener('click', loadJsonChecklist)
+</script>
+</html>

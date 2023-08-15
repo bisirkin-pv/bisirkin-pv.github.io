@@ -2,22 +2,24 @@
     "menu":[
         {
             "name":"Home",
-            "url":"/"
+            "url":"/page/home.html",
+            "icon":"/icons/home.svg"
         },{
             "name":"Fifteen",
-            "url":"/fifteen.html"
+            "url":"https://cdn.jsdelivr.net/gh/bisirkin-pv/fifteen/index.html",
+            "icon":"/icons/puzzle.svg"
         },{
             "name":"Color Code",
-            "url":"/colorCode.html"
-        },{
-            "name":"AsciiDoctor",
-            "url":"/asciidoctor.html"
+            "url":"https://cdn.jsdelivr.net/gh/bisirkin-pv/colorCode/index.html",
+            "icon":"/icons/code-braces-box.svg"
         },{
             "name":"Check Fullness Table",
-            "url":"/CheckFullnessTable.html"
+            "url":"https://cdn.jsdelivr.net/gh/bisirkin-pv/CheckFullnessTable/www/index.html",
+            "icon":"/icons/table-check.svg"
         },{
             "name":"Checklist viewer",
-            "url":"/checklistViewer.html"
+            "url":"https://cdn.jsdelivr.net/gh/bisirkin-pv/checklist-viewer/index.html",
+            "icon":"/icons/list-status.svg"
         }
     ]
 }
